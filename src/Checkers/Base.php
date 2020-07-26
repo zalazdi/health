@@ -2,7 +2,7 @@
 
 namespace PragmaRX\Health\Checkers;
 
-use PragmaRX\Health\Support\Timer;
+use SebastianBergmann\Timer\Timer;
 use PragmaRX\Health\Support\Result;
 use PragmaRX\Health\Support\Target;
 use PragmaRX\Health\Support\Traits\Database;
@@ -21,11 +21,13 @@ abstract class Base implements Contract
      */
     protected function checkAndStoreTime()
     {
-        Timer::start();
+        $timer = new Timer();
+
+        $timer->start();
 
         $result = $this->check();
 
-        $result->elapsedTime = Timer::stop();
+        $result->elapsedTime = $timer->stop()->asMilliseconds();
 
         return $result;
     }
