@@ -27,7 +27,7 @@ abstract class Base implements Contract
 
         $result = $this->check();
 
-        $result->elapsedTime = $timer->stop()->asMilliseconds();
+        $result->elapsedTime = $timer->stop()->asSeconds();
 
         return $result;
     }

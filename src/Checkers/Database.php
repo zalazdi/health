@@ -57,7 +57,7 @@ class Database extends Base
             DB::raw($this->target->query)
         );
 
-        $took = round($timer->stop(), 5);
+        $took = round($timer->stop()->asSeconds(), 5);
         $tookHuman = "{$took}s";
 
         $this->target->setDisplay($this->target->name." ({$tookHuman})");
